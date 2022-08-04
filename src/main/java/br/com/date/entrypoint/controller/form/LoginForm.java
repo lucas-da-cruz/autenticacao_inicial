@@ -1,10 +1,14 @@
 package br.com.date.entrypoint.controller.form;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+@Getter
+@Setter
 public class LoginForm {
 
     @Email(message = "{email.not.valid}")
@@ -12,22 +16,6 @@ public class LoginForm {
     private String email;
     @NotBlank(message = "{senha.not.blank}")
     private String senha;
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
 
     public UsernamePasswordAuthenticationToken converter() {
         return new UsernamePasswordAuthenticationToken(email, senha);
